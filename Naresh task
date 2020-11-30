@@ -1,0 +1,738 @@
+******MYSQL 5.6 IN UBANTU 18.0******
+
+sudo apt-get update -y
+
+sudo apt-get install -y mysql-server-5.6
+
+sudo apt-get install -y mysql-client-5.6
+
+******create a database******
+set @@default_storage_engine = 'MyISAM';
+
+
+******create tables engine as myisam******
+
+******TABLE 1*******
+
+mysql> create database  StudentRecordWithMyISAM;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use  StudentRecordWithMyISAM;
+Database changed
+
+mysql>  create table StudentRecordWithMyISAM (Id int, StudentName varchar(100),StudentAge int) ENGINE=MyISAM;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> DESC StudentRecordWithMyISAM;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------------------------+
+| Tables_in_StudentRecordWithMyISAM |
++-----------------------------------+
+| StudentRecordWithMyISAM           |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TABLE_NAME,
+   ->  ENGINE
+   -> FROM information_schema.TABLES
+   -> WHERE TABLE_SCHEMA = 'business' and ENGINE = 'MyISAM';
+
++-------------------------+--------+
+| TABLE_NAME              | ENGINE |
++-------------------------+--------+
+| studentrecordwithmyisam | MyISAM |
++-------------------------+--------+
+1 row in set (0.00 sec)
+
+******TABLE 2******
+
+mysql> create database  NareshWithMyISAM;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| mysql                   |
+| performance_schema      |
+| test                    |
++-------------------------+
+6 rows in set (0.00 sec)
+
+mysql> use  NareshWithMyISAM ;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+mysql>  create table NareshWithMyISAM (Id int, StudentName varchar(100),StudentAge int) ENGINE=MyISAM;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc  NareshWithMyISAM ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+ 
+*******Table 3******
+
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| mysql                   |
+| performance_schema      |
+| test                    |
++-------------------------+
+7 rows in set (0.00 sec)
+
+mysql> use arfathwithMYISAM  ;
+Database changed
+mysql>  create table arfathWithMyISAM (Id int, StudentName varchar(100),StudentAge int) ENGINE=MyISAM;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc  arfathWithMyISAM ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+   
+******Table 4*******
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| Mahesh                  |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| mysql                   |
+| performance_schema      |
+| test                    |
++-------------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mahesh;
+ERROR 1049 (42000): Unknown database 'mahesh'
+mysql> use Mahesh;
+Database changed
+mysql> CREATE TABLE Mahesh(
+    ->        id INT NOT NULL AUTO_INCREMENT,
+    ->        PRIMARY KEY (id),
+    ->        data VARCHAR(20) NOT NULL
+    -> ) ENGINE = MyISAM;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql>  desc Mahesh;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| data  | varchar(20) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+*******Table 5*******
+
+mysql> create database sudha;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use sudha;
+Database changed
+mysql> CREATE TABLE myTable (
+    ->        id INT NOT NULL AUTO_INCREMENT,
+    ->        PRIMARY KEY (id),
+    ->        data VARCHAR(20) NOT NULL
+    ->   ) ENGINE = MYISAM;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE sudha (
+    ->        id INT NOT NULL AUTO_INCREMENT,
+    ->        PRIMARY KEY (id),
+    ->        data VARCHAR(20) NOT NULL
+    -> ) ENGINE MyISAM;
+Query OK, 0 rows affected (0.03 sec)
+
+******Create data into those myisam tables*******
+
+mysql> INSERT INTO StudentRecordWithMyISAM (id , studentname , studentage)values(1 , 'Nani' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO StudentRecordWithMyISAM (id , studentname , studentage)values(2 , 'sudha' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO StudentRecordWithMyISAM (id , studentname , studentage)values(3 , 'bhargavi' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO StudentRecordWithMyISAM (id , studentname , studentage)values(4 , 'Hemanth' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO StudentRecordWithMyISAM (id , studentname , studentage)values(4 , 'Hemanth' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from StudentRecordWithMyISAM;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|    1 | Nani        |         21 |
+|    2 | sudha       |         21 |
+|    3 | bhargavi    |         21 |
+|    4 | Hemanth     |         21 |
+|    4 | Hemanth     |         21 |
++------+-------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> use  NareshWithMyISAM  ;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_NareshWithMyISAM |
++----------------------------+
+| NareshWithMyISAM           |
++----------------------------+
+1 row in set (0.01 sec)
+
+mysql> desc  NareshWithMyISAM  ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(6 , 'sana' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(7 , 'sonali' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(8 , 'ganesh' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(9 , 'vini' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(10 , 'siva' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from  NareshWithMyISAM  ;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|    6 | sana        |         21 |
+|    7 | sonali      |         21 |
+|    8 | ganesh      |         21 |
+|    9 | vini        |         21 |
+|   10 | siva        |         21 |
++------+-------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> create database hemanth;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use hemanth;
+Database changed
+mysql> create table hemanth (Id int, StudentName varchar(100),StudentAge int) ENGINE=MyISAM;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| Mahesh                  |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| hemanth                 |
+| mysql                   |
+| performance_schema      |
+| sudha                   |
+| test                    |
++-------------------------+
+10 rows in set (0.01 sec)
+
+mysql> use hemanth;
+Database changed
+mysql>  INSERT INTO  NareshWithMyISAM   (id , studentname , studentage)values(6 , 'sana' , '21');
+ERROR 1146 (42S02): Table 'hemanth.NareshWithMyISAM' doesn't exist
+mysql>  INSERT INTO  hemanth (id , studentname , studentage)values(11 , 'lalli' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO  hemanth (id , studentname , studentage)values(12 , 'pavii' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO  hemanth (id , studentname , studentage)values(13 , 'bavi' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO  hemanth (id , studentname , studentage)values(14 , 'madhu' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO  hemanth (id , studentname , studentage)values(15 , 'sravani' , '21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc hemanth;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from hemanth;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|   11 | lalli       |         21 |
+|   12 | pavii       |         21 |
+|   13 | bavi        |         21 |
+|   14 | madhu       |         21 |
+|   15 | sravani     |         21 |
++------+-------------+------------+
+5 rows in set (0.00 sec)
+
+ 
+mysql> INSERT INTO Mahesh (id,data) VALUES(0,'groundhog');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Mahesh (id,data) VALUES(1,'dog');
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> INSERT INTO Mahesh (id,data) VALUES(23'dog');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''dog')' at line 1
+mysql> INSERT INTO Mahesh (id,data) VALUES(23,'dog');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Mahesh (id,data) VALUES(24,'rabbit');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Mahesh (id,data) VALUES(25,'parrot');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Mahesh (id,data) VALUES(26,'sparrow');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Mahesh;
++----+-----------+
+| id | data      |
++----+-----------+
+|  1 | groundhog |
+| 23 | dog       |
+| 24 | rabbit    |
+| 25 | parrot    |
+| 26 | sparrow   |
++----+-----------+
+5 rows in set (0.00 sec)
+
+ show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| Mahesh                  |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| hemanth                 |
+| mysql                   |
+| performance_schema      |
+| sudha                   |
+| test                    |
++-------------------------+
+10 rows in set (0.00 sec)
+
+mysql> use sudha;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc sudha;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| data  | varchar(20) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO Mahesh (id,data) VALUES(27,'Delhi');
+ERROR 1146 (42S02): Table 'sudha.Mahesh' doesn't exist
+mysql> INSERT INTO sudha (id,data) VALUES(27,'Delhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO sudha (id,data) VALUES(28,'somala');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO sudha (id,data) VALUES(29,'somalia');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO sudha (id,data) VALUES(30,'chennai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO sudha (id,data) VALUES(31,'hyd');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sudha;
++----+---------+
+| id | data    |
++----+---------+
+| 27 | Delhi   |
+| 28 | somala  |
+| 29 | somalia |
+| 30 | chennai |
+| 31 | hyd     |
++----+---------+
+5 rows in set (0.00 sec)
+
+********see how to change tables from myisam to innodb without losing any data in the tables. check what are the different ways you can change it.**********
+
+mysql> use  StudentRecordWithMyISAM ;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc  StudentRecordWithMyISAM ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from  StudentRecordWithMyISAM ;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|    1 | Nani        |         21 |
+|    2 | sudha       |         21 |
+|    3 | bhargavi    |         21 |
+|    4 | Hemanth     |         21 |
+|    4 | Hemanth     |         21 |
++------+-------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> alter table  StudentRecordWithMyISAM ENGINE=InnoDB;
+Query OK, 5 rows affected (0.59 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show create table StudentRecordWithMyISAM;
++-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table                   | Create Table                                                                                                                                                                                |
++-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| StudentRecordWithMyISAM | CREATE TABLE `StudentRecordWithMyISAM` (
+  `Id` int(11) DEFAULT NULL,
+  `StudentName` varchar(100) DEFAULT NULL,
+  `StudentAge` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set @@default_storage_engine = 'MyISAM';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set @@default_storage_engine;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show engines;
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+| Engine             | Support | Comment                                                                    | Transactions | XA   | Savepoints |
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+| PERFORMANCE_SCHEMA | YES     | Performance Schema                                                         | NO           | NO   | NO         |
+| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                                      | NO           | NO   | NO         |
+| CSV                | YES     | CSV storage engine                                                         | NO           | NO   | NO         |
+| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears)             | NO           | NO   | NO         |
+| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables                  | NO           | NO   | NO         |
+| MyISAM             | DEFAULT | MyISAM storage engine                                                      | NO           | NO   | NO         |
+| ARCHIVE            | YES     | Archive storage engine                                                     | NO           | NO   | NO         |
+| FEDERATED          | NO      | Federated MySQL storage engine                                             | NULL         | NULL | NULL       |
+| InnoDB             | YES     | Percona-XtraDB, Supports transactions, row-level locking, and foreign keys | YES          | YES  | YES        |
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| Mahesh                  |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| hemanth                 |
+| mysql                   |
+| performance_schema      |
+| sudha                   |
+| test                    |
++-------------------------+
+10 rows in set (0.00 sec)
+
+mysql> use  NareshWithMyISAM  ;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc  NareshWithMyISAM  ;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from  NareshWithMyISAM  ;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|    6 | sana        |         21 |
+|    7 | sonali      |         21 |
+|    8 | ganesh      |         21 |
+|    9 | vini        |         21 |
+|   10 | siva        |         21 |
++------+-------------+------------+
+5 rows in set (0.01 sec)
+
+mysql>  alter table NareshWithMyISAM  ENGINE=InnoDB;
+Query OK, 5 rows affected (0.45 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show create table NareshWithMyISAM;
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table            | Create Table                                                                                                                                                                         |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NareshWithMyISAM | CREATE TABLE `NareshWithMyISAM` (
+  `Id` int(11) DEFAULT NULL,
+  `StudentName` varchar(100) DEFAULT NULL,
+  `StudentAge` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| Mahesh                  |
+| NareshWithMyISAM        |
+| StudentRecordWithMyISAM |
+| arfathwithMYISAM        |
+| hemanth                 |
+| mysql                   |
+| performance_schema      |
+| sudha                   |
+| test                    |
++-------------------------+
+10 rows in set (0.00 sec)
+
+mysql> use Mahesh;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc Mahesh;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| data  | varchar(20) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Mahesh;
++----+-----------+
+| id | data      |
++----+-----------+
+|  1 | groundhog |
+| 23 | dog       |
+| 24 | rabbit    |
+| 25 | parrot    |
+| 26 | sparrow   |
++----+-----------+
+5 rows in set (0.02 sec)
+
+mysql> alter table Mahesh  ENGINE=InnoDB;
+Query OK, 5 rows affected (0.47 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show create table Mahesh;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                 |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Mahesh | CREATE TABLE `Mahesh` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1 |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> use sudha;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc sudha;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| data  | varchar(20) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from sudha;
++----+---------+
+| id | data    |
++----+---------+
+| 27 | Delhi   |
+| 28 | somala  |
+| 29 | somalia |
+| 30 | chennai |
+| 31 | hyd     |
++----+---------+
+5 rows in set (0.02 sec)
+
+mysql> alter table sudha  ENGINE=InnoDB;
+Query OK, 5 rows affected (0.52 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show create table sudha;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| sudha | CREATE TABLE `sudha` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1 |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+
+
+mysql> use hemanth;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> desc hemanth;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Id          | int(11)      | YES  |     | NULL    |       |
+| StudentName | varchar(100) | YES  |     | NULL    |       |
+| StudentAge  | int(11)      | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from hemanth;
++------+-------------+------------+
+| Id   | StudentName | StudentAge |
++------+-------------+------------+
+|   11 | lalli       |         21 |
+|   12 | pavii       |         21 |
+|   13 | bavi        |         21 |
+|   14 | madhu       |         21 |
+|   15 | sravani     |         21 |
++------+-------------+------------+
+5 rows in set (0.02 sec)
+
+mysql>  alter table hemanth  ENGINE=InnoDB;
+Query OK, 5 rows affected (0.48 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show create table hemanth;
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hemanth | CREATE TABLE `hemanth` (
+  `Id` int(11) DEFAULT NULL,
+  `StudentName` varchar(100) DEFAULT NULL,
+  `StudentAge` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+***********validate the data after migrating tables from myisam to innodb**********
+
+
+mysql> show table status from StudentRecordWithMyISAM;
++-------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| Name                    | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time | Check_time | Collation         | Checksum | Create_options | Comment |
++-------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| StudentRecordWithMyISAM | InnoDB |      10 | Compact    |    5 |           3276 |       16384 |               0 |            0 |         0 |           NULL | 2020-11-28 09:18:59 | NULL        | NULL       | latin1_swedish_ci |     NULL |                |         |
++-------------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+1 row in set (0.00 sec)
+ 
+mysql> show table status from  NareshWithMyISAM ;
++------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| Name             | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time | Check_time | Collation         | Checksum | Create_options | Comment |
++------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| NareshWithMyISAM | InnoDB |      10 | Compact    |    5 |           3276 |       16384 |               0 |            0 |         0 |           NULL | 2020-11-28 09:26:42 | NULL        | NULL       | latin1_swedish_ci |     NULL |                |         |
++------------------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+1 row in set (0.00 sec)
+
+mysql> show table status from Mahesh;
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| Name   | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time | Check_time | Collation         | Checksum | Create_options | Comment |
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| Mahesh | InnoDB |      10 | Compact    |    5 |           3276 |       16384 |               0 |            0 |         0 |             27 | 2020-11-28 09:35:37 | NULL        | NULL       | latin1_swedish_ci |     NULL |                |         |
++--------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+1 row in set (0.00 sec)
+
+mysql> show table status from sudha;
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+
+| Name    | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation         | Checksum | Create_options | Comment |
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+
+| myTable | MyISAM |      10 | Dynamic    |    0 |              0 |           0 | 281474976710655 |         1024 |         0 |              1 | 2020-11-27 18:25:27 | 2020-11-27 18:25:27 | NULL       | latin1_swedish_ci |     NULL |                |         |
+| sudha   | InnoDB |      10 | Compact    |    5 |           3276 |       16384 |               0 |            0 |         0 |             32 | 2020-11-28 09:38:35 | NULL                | NULL       | latin1_swedish_ci |     NULL |                |         |
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-------------------+----------+----------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> show table status from hemanth;
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| Name    | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time | Check_time | Collation         | Checksum | Create_options | Comment |
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+| hemanth | InnoDB |      10 | Compact    |    5 |           3276 |       16384 |               0 |            0 |         0 |           NULL | 2020-11-28 09:43:23 | NULL        | NULL       | latin1_swedish_ci |     NULL |                |         |
++---------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+-------------+------------+-------------------+----------+----------------+---------+
+1 row in set (0.00 sec)
+
+
+
+
